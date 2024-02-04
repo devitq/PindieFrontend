@@ -1,7 +1,7 @@
 import { Header } from "./components/Header/Header"
 import { Footer } from "./components/Footer/Footer"
 
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import "./globals.css"
