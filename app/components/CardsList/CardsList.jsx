@@ -13,6 +13,7 @@ export const CardsList = (props) => {
 					<li key={index} className={Styles["cards-list__item"]}>
 						<a
 							href={gameData.link}
+							target="_blank"
 							className={Styles["card-list__link"]}
 						>
 							<Card gameData={gameData} />

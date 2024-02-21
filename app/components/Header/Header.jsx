@@ -1,6 +1,24 @@
+"use client"
+
+import { useState } from "react"
+
+import { AuthForm } from "../AuthForm/AuthForm"
+import { Overlay } from "../Overlay/Overlay"
+import { Popup } from "../Popup/Popup"
+
 import Styles from "./Header.module.css"
 
 export const Header = () => {
+	const [popupIsOpened, setPopupIsOpened] = useState(false)
+
+	const openPopup = () => {
+		setPopupIsOpened(true)
+	}
+
+	const closePopup = () => {
+		setPopupIsOpened(false)
+	}
+
 	return (
 		<header className={Styles["header"]}>
 			<a href="/" className={Styles["logo"]}>
@@ -44,9 +62,18 @@ export const Header = () => {
 					</li>
 				</ul>
 				<div className={Styles["auth"]}>
-					<button className={Styles["auth__button"]}>Войти</button>
+					<button
+						className={Styles["auth__button"]}
+						onClick={openPopup}
+					>
+						Войти
+					</button>
 				</div>
 			</nav>
+			<Overlay isOpened={popupIsOpened} closePopup={closePopup} />
+			<Popup isOpened={popupIsOpened} closePopup={closePopup}>
+				<AuthForm />
+			</Popup>
 		</header>
 	)
 }
