@@ -15,11 +15,13 @@ export const Promo = () => {
 
 	useEffect(() => {
 		let timeout
+
 		if (codeIsVisible) {
 			timeout = setTimeout(() => {
 				setCodeIsVisible(false)
 			}, 5000)
 		}
+
 		return () => {
 			clearTimeout(timeout)
 		}

@@ -92,3 +92,27 @@
 	opacity: 0.5;
 	pointer-events: none;
 }
+
+@media screen and (max-width: 433px) {
+	.form__reset {
+		font-size: 15px;
+		padding: 16px 20px;
+	}
+
+	.form__submit {
+		font-size: 15px;
+		padding: 16px 20px;
+	}
+
+	.form__field-title {
+		font-size: 18px;
+	}
+
+	.form__field-input {
+		font-size: 18px;
+	}
+
+	.form__title {
+		font-size: 28px;
+	}
+}
