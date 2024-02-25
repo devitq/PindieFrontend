@@ -55,6 +55,9 @@ body {
 	max-width: 1728px;
 	border-right: 4px solid black;
 	border-left: 4px solid black;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 	margin: 0 auto;
 }
 

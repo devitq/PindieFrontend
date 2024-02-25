@@ -1,4 +1,4 @@
-import Styles from "./Banner.module.css"
+import Styles from "@/app/components/Banner/Banner.module.css"
 
 export const Banner = () => {
 	return (
@@ -27,3 +27,5 @@ export const Banner = () => {
 		</section>
 	)
 }
+
+export default Banner

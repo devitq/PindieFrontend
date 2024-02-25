@@ -1,4 +1,4 @@
-import Styles from "./Card.module.css"
+import Styles from "@/app/components/Card/Card.module.css"
 
 export const Card = ({ gameData }) => {
 	return (

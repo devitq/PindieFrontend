@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 
-import Styles from "./Promo.module.css"
+import Styles from "@/app/components/Promo/Promo.module.css"
 
 export const Promo = () => {
 	const [codeIsVisible, setCodeIsVisible] = useState(false)
@@ -54,3 +54,5 @@ export const Promo = () => {
 		</section>
 	)
 }
+
+export default Promo

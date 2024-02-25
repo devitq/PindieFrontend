@@ -1,4 +1,4 @@
-import Styles from "./Popup.module.css"
+import Styles from "@/app/components/Popup/Popup.module.css"
 
 export const Popup = (props) => {
 	return (
@@ -22,3 +22,5 @@ export const Popup = (props) => {
 		</div>
 	)
 }
+
+export default Popup

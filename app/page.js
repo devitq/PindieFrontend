@@ -1,7 +1,7 @@
-import { Banner } from "./components/Banner/Banner"
-import { Promo } from "./components/Promo/Promo"
-import { CardsList } from "./components/CardsList/CardsList"
-import { getGamesByCategory } from "./data/data-utils"
+import Banner from "./components/Banner/Banner"
+import Promo from "./components/Promo/Promo"
+import CardsList from "./components/CardsList/CardsList"
+import { getGamesByCategory } from "@/app/data/data-utils"
 
 const popularGames = getGamesByCategory("popular")
 const newGames = getGamesByCategory("new")

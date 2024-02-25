@@ -1,4 +1,4 @@
-import Styles from "./AuthForm.module.css"
+import Styles from "@/app/components/AuthForm/AuthForm.module.css"
 
 export const AuthForm = () => {
 	return (
@@ -33,3 +33,5 @@ export const AuthForm = () => {
 		</form>
 	)
 }
+
+export default AuthForm

@@ -1,4 +1,4 @@
-import Styles from "./Overlay.module.css"
+import Styles from "@/app/components/Overlay/Overlay.module.css"
 
 export const Overlay = (props) => {
 	return (
@@ -8,3 +8,5 @@ export const Overlay = (props) => {
 		></div>
 	)
 }
+
+export default Overlay

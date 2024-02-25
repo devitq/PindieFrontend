@@ -1,10 +1,10 @@
-import { Header } from "./components/Header/Header"
-import { Footer } from "./components/Footer/Footer"
+import Header from "@/app/components/Header/Header"
+import Footer from "@/app/components/Footer/Footer"
 
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-import "./globals.css"
+import "@/app/globals.css"
 
 export const metadata = {
 	title: "Pindie",

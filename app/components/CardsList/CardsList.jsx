@@ -1,6 +1,8 @@
-import Card from "../Card/Card"
+import Link from "next/link"
 
-import Styles from "./CardsList.module.css"
+import Card from "@/app/components/Card/Card"
+
+import Styles from "@/app/components/CardsList/CardsList.module.css"
 
 export const CardsList = (props) => {
 	return (
@@ -11,16 +13,17 @@ export const CardsList = (props) => {
 			<ul className={Styles["cards-list"]}>
 				{props.data.map((gameData, index) => (
 					<li key={index} className={Styles["cards-list__item"]}>
-						<a
-							href={gameData.link}
-							target="_blank"
+						<Link
+							href={`/games/${gameData.id}`}
 							className={Styles["card-list__link"]}
 						>
 							<Card gameData={gameData} />
-						</a>
+						</Link>
 					</li>
 				))}
 			</ul>
 		</section>
 	)
 }
+
+export default CardsList

@@ -5,6 +5,7 @@
 	color: white;
 	padding: 0px 115px 0px 24px;
 	display: flex;
+	margin-top: auto;
 	justify-content: space-between;
 }
 

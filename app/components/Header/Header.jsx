@@ -1,14 +1,18 @@
 "use client"
 
+import { usePathname } from "next/navigation"
+import Link from "next/link"
 import { useState } from "react"
 
-import { AuthForm } from "../AuthForm/AuthForm"
-import { Overlay } from "../Overlay/Overlay"
-import { Popup } from "../Popup/Popup"
+import AuthForm from "@/app/components/AuthForm/AuthForm"
+import Overlay from "@/app/components/Overlay/Overlay"
+import Popup from "@/app/components/Popup/Popup"
 
-import Styles from "./Header.module.css"
+import Styles from "@/app/components/Header/Header.module.css"
 
-export const Header = () => {
+export const Header = (props) => {
+	const pathname = usePathname()
+
 	const [popupIsOpened, setPopupIsOpened] = useState(false)
 
 	const openPopup = () => {
@@ -21,44 +25,96 @@ export const Header = () => {
 
 	return (
 		<header className={Styles["header"]}>
-			<a href="/" className={Styles["logo"]}>
-				<img
-					src="/images/logo.svg"
-					alt="Логотип Pindie"
-					className={Styles["logo__image"]}
-				/>
-			</a>
+			{pathname === "/" ? (
+				<div className={Styles["logo"]}>
+					<img
+						src="/images/logo.svg"
+						alt="Логотип Pindie"
+						className={Styles["logo__image"]}
+					/>
+				</div>
+			) : (
+				<Link href="/" className={Styles["logo"]}>
+					<img
+						src="/images/logo.svg"
+						alt="Логотип Pindie"
+						className={Styles["logo__image"]}
+					/>
+				</Link>
+			)}
 			<nav className={Styles["menu"]}>
 				<ul className={Styles["menu__list"]}>
 					<li className={Styles["menu__item"]}>
-						<a href="" className={Styles["menu__link"]}>
+						<Link
+							href="/new"
+							className={`${Styles["menu__link"]} ${
+								pathname === "/new"
+									? Styles["menu__link_active"]
+									: ""
+							}`}
+						>
 							Новинки
-						</a>
+						</Link>
 					</li>
 					<li className={Styles["menu__item"]}>
-						<a href="" className={Styles["menu__link"]}>
+						<Link
+							href="/popular"
+							className={`${Styles["menu__link"]} ${
+								pathname === "/popular"
+									? Styles["menu__link_active"]
+									: ""
+							}`}
+						>
 							Популярные
-						</a>
+						</Link>
 					</li>
 					<li className={Styles["menu__item"]}>
-						<a href="" className={Styles["menu__link"]}>
+						<Link
+							href="/shooters"
+							className={`${Styles["menu__link"]} ${
+								pathname === "/shooters"
+									? Styles["menu__link_active"]
+									: ""
+							}`}
+						>
 							Шутеры
-						</a>
+						</Link>
 					</li>
 					<li className={Styles["menu__item"]}>
-						<a href="" className={Styles["menu__link"]}>
+						<Link
+							href="/runners"
+							className={`${Styles["menu__link"]} ${
+								pathname === "/runners"
+									? Styles["menu__link_active"]
+									: ""
+							}`}
+						>
 							Ранеры
-						</a>
+						</Link>
 					</li>
 					<li className={Styles["menu__item"]}>
-						<a href="" className={Styles["menu__link"]}>
+						<Link
+							href="/pixel-games"
+							className={`${Styles["menu__link"]} ${
+								pathname === "/pixel-games"
+									? Styles["menu__link_active"]
+									: ""
+							}`}
+						>
 							Пиксельные
-						</a>
+						</Link>
 					</li>
 					<li className={Styles["menu__item"]}>
-						<a href="" className={Styles["menu__link"]}>
+						<Link
+							href="/tds"
+							className={`${Styles["menu__link"]} ${
+								pathname === "/tds"
+									? Styles["menu__link_active"]
+									: ""
+							}`}
+						>
 							TDS
-						</a>
+						</Link>
 					</li>
 				</ul>
 				<div className={Styles["auth"]}>
@@ -77,3 +133,5 @@ export const Header = () => {
 		</header>
 	)
 }
+
+export default Header
