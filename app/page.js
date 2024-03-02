@@ -1,12 +1,20 @@
-import Banner from "./components/Banner/Banner"
-import Promo from "./components/Promo/Promo"
-import CardsList from "./components/CardsList/CardsList"
-import { getGamesByCategory } from "@/app/data/data-utils"
+import Banner from "@/app/components/Banner/Banner"
+import Promo from "@/app/components/Promo/Promo"
+import CardsList from "@/app/components/CardsList/CardsList"
 
-const popularGames = getGamesByCategory("popular")
-const newGames = getGamesByCategory("new")
+import { endpoints } from "@/app/api/config"
+import { getNormalizedGamesDataByCategory } from "@/app/api/api-utils"
 
-export default function Home() {
+export default async function Home() {
+	const popularGames = await getNormalizedGamesDataByCategory(
+		endpoints.games,
+		"popular"
+	)
+	const newGames = await getNormalizedGamesDataByCategory(
+		endpoints.games,
+		"new"
+	)
+
 	return (
 		<main>
 			<Banner />

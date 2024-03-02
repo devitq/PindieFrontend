@@ -1,9 +1,13 @@
 import CardsList from "@/app/components/CardsList/CardsList"
 
-import { getGamesByCategory } from "@/app/data/data-utils"
+import { getNormalizedGamesDataByCategory } from "@/app/api/api-utils"
+import { endpoints } from "@/app/api/config"
 
-export default function Popular() {
-	const shooterGames = getGamesByCategory("shooter")
+export default async function Shooters() {
+	const shooterGames = await getNormalizedGamesDataByCategory(
+		endpoints.games,
+		"shooter"
+	)
 
 	return (
 		<main>

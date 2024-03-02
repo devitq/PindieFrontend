@@ -1,9 +1,13 @@
 import CardsList from "@/app/components/CardsList/CardsList"
 
-import { getGamesByCategory } from "@/app/data/data-utils"
+import { getNormalizedGamesDataByCategory } from "@/app/api/api-utils"
+import { endpoints } from "@/app/api/config"
 
-export default function Popular() {
-	const runnerGames = getGamesByCategory("runner")
+export default async function Runners() {
+	const runnerGames = await getNormalizedGamesDataByCategory(
+		endpoints.games,
+		"runner"
+	)
 
 	return (
 		<main>
