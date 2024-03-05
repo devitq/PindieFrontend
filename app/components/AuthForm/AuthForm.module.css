@@ -93,6 +93,10 @@
 	pointer-events: none;
 }
 
+.form__message {
+	margin-bottom: 20px;
+}
+
 @media screen and (max-width: 433px) {
 	.form__reset {
 		font-size: 15px;

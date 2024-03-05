@@ -7,12 +7,45 @@ import GameNotFound from "@/app/components/GameNotFound/GameNotFound"
 
 import Styles from "@/app/games/[id]/Game.module.css"
 
-import { endpoints } from "@/app/api/config"
-import { getNormalizedGameDataById } from "@/app/api/api-utils"
+import endpoints from "@/app/api/config"
+import {
+	getNormalizedGameDataById,
+	getMe,
+	getJWT,
+	removeJWT,
+	isResponseOk,
+	checkIfUserVoted,
+	vote,
+} from "@/app/api/api-utils"
 
 export default function GamePage(props) {
 	const [preloaderVisible, setPreloaderVisible] = useState(true)
 	const [game, setGame] = useState(null)
+	const [isAuthorized, setIsAuthorized] = useState(false)
+	const [currentUser, setCurrentUser] = useState(null)
+	const [isVoted, setIsVoted] = useState(false)
+
+	const handleVote = async () => {
+		const jwt = getJWT()
+		let usersIdArray = game.users.length
+			? game.users.map((user) => user.id)
+			: []
+		usersIdArray.push(currentUser.id)
+		const response = await vote(
+			`${endpoints.games}/${game.id}`,
+			jwt,
+			usersIdArray
+		)
+		if (isResponseOk(response)) {
+			setIsVoted(true)
+			setGame(() => {
+				return {
+					...game,
+					users: [...game.users, currentUser],
+				}
+			})
+		}
+	}
 
 	useEffect(() => {
 		async function fetchData() {
@@ -25,6 +58,30 @@ export default function GamePage(props) {
 		}
 		fetchData()
 	}, [])
+
+	useEffect(() => {
+		const jwt = getJWT()
+
+		if (jwt) {
+			getMe(endpoints.me, jwt).then((userData) => {
+				if (isResponseOk(userData)) {
+					setIsAuthorized(true)
+					setCurrentUser(userData)
+				} else {
+					setIsAuthorized(false)
+					removeJWT()
+				}
+			})
+		}
+	}, [])
+
+	useEffect(() => {
+		if (currentUser && game) {
+			setIsVoted(checkIfUserVoted(game, currentUser.id))
+		} else {
+			setIsVoted(false)
+		}
+	}, [currentUser, game])
 
 	return (
 		<main className="main">
@@ -59,9 +116,11 @@ export default function GamePage(props) {
 								</span>
 							</p>
 							<button
+								disabled={!isAuthorized || isVoted}
 								className={`button ${Styles["about__vote-button"]}`}
+								onClick={handleVote}
 							>
-								Голосовать
+								{isVoted ? "Голос учтён" : "Голосовать"}
 							</button>
 						</div>
 					</section>
