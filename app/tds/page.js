@@ -1,17 +1,21 @@
+"use client"
+
+import Preloader from "@/app/components/Preloader/Preloader"
 import CardsList from "@/app/components/CardsList/CardsList"
 
-import { getNormalizedGamesDataByCategory } from "@/app/api/api-utils"
+import { useGetDataByCategory } from "@/app/api/api-hooks"
 import endpoints from "@/app/api/config"
 
-export default async function TDS() {
-	const tdsGames = await getNormalizedGamesDataByCategory(
-		endpoints.games,
-		"TDS"
-	)
+export default function TDS() {
+	const tdsGames = useGetDataByCategory(endpoints.games, "TDS")
 
 	return (
 		<main>
-			<CardsList data={tdsGames} id="TDS" title="TDS" />
+			{tdsGames ? (
+				<CardsList data={tdsGames} id="TDS" title="TDS" />
+			) : (
+				<Preloader />
+			)}
 		</main>
 	)
 }

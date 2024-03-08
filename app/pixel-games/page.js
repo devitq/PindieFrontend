@@ -1,17 +1,25 @@
+"use client"
+
+import Preloader from "@/app/components/Preloader/Preloader"
 import CardsList from "@/app/components/CardsList/CardsList"
 
-import { getNormalizedGamesDataByCategory } from "@/app/api/api-utils"
+import { useGetDataByCategory } from "@/app/api/api-hooks"
 import endpoints from "@/app/api/config"
 
-export default async function PixelGames() {
-	const pixelGames = await getNormalizedGamesDataByCategory(
-		endpoints.games,
-		"pixel"
-	)
+export default function PixelGames() {
+	const pixelGames = useGetDataByCategory(endpoints.games, "pixel")
 
 	return (
 		<main>
-			<CardsList data={pixelGames} id="pixel-games" title="Пиксельные" />
+			{pixelGames ? (
+				<CardsList
+					data={pixelGames}
+					id="pixel-games"
+					title="Пиксельные"
+				/>
+			) : (
+				<Preloader />
+			)}
 		</main>
 	)
 }
