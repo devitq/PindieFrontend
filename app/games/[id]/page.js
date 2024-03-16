@@ -10,78 +10,66 @@ import Styles from "@/app/games/[id]/Game.module.css"
 import endpoints from "@/app/api/config"
 import {
 	getNormalizedGameDataById,
-	getMe,
-	getJWT,
-	removeJWT,
 	isResponseOk,
 	checkIfUserVoted,
 	vote,
 } from "@/app/api/api-utils"
+import { useStore } from "@/app/store/app-store"
 
 export default function GamePage(props) {
+	const authContext = useStore()
 	const [preloaderVisible, setPreloaderVisible] = useState(true)
 	const [game, setGame] = useState(null)
-	const [isAuthorized, setIsAuthorized] = useState(false)
-	const [currentUser, setCurrentUser] = useState(null)
 	const [isVoted, setIsVoted] = useState(false)
 
 	const handleVote = async () => {
-		const jwt = getJWT()
+		const jwt = authContext.token
+
 		let usersIdArray = game.users.length
 			? game.users.map((user) => user.id)
 			: []
-		usersIdArray.push(currentUser.id)
+		usersIdArray.push(authContext.user.id)
 		const response = await vote(
 			`${endpoints.games}/${game.id}`,
 			jwt,
 			usersIdArray
 		)
+
 		if (isResponseOk(response)) {
-			setIsVoted(true)
 			setGame(() => {
 				return {
 					...game,
-					users: [...game.users, currentUser],
+					users: [...game.users, authContext.user],
+					users_permissions_users: [
+						...game.users_permissions_users,
+						authContext.user,
+					],
 				}
 			})
+
+			setIsVoted(true)
 		}
 	}
 
 	useEffect(() => {
 		async function fetchData() {
+			setPreloaderVisible(true)
 			const game = await getNormalizedGameDataById(
 				endpoints.games,
 				props.params.id
 			)
+			isResponseOk(game) ? setGame(game) : setGame(null)
 			setPreloaderVisible(false)
-			game.error ? setGame(null) : setGame(game)
 		}
+
 		fetchData()
 	}, [])
 
 	useEffect(() => {
-		const jwt = getJWT()
-
-		if (jwt) {
-			getMe(endpoints.me, jwt).then((userData) => {
-				if (isResponseOk(userData)) {
-					setIsAuthorized(true)
-					setCurrentUser(userData)
-				} else {
-					setIsAuthorized(false)
-					removeJWT()
-				}
-			})
-		}
-	}, [])
-
-	useEffect(() => {
-		if (currentUser && game) {
-			setIsVoted(checkIfUserVoted(game, currentUser.id))
-		} else {
-			setIsVoted(false)
-		}
-	}, [currentUser, game])
+		authContext.user && game
+			? setIsVoted(checkIfUserVoted(game, authContext.user.id))
+			: setIsVoted(false)
+	}, [authContext.user, game])
 
 	return (
 		<main className="main">
@@ -116,7 +104,7 @@ export default function GamePage(props) {
 								</span>
 							</p>
 							<button
-								disabled={!isAuthorized || isVoted}
+								disabled={!authContext.isAuth || isVoted}
 								className={`button ${Styles["about__vote-button"]}`}
 								onClick={handleVote}
 							>

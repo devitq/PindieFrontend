@@ -1,8 +1,4 @@
-import Header from "@/app/components/Header/Header"
-import Footer from "@/app/components/Footer/Footer"
-
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import App from "@/app/App"
 
 import "@/app/globals.css"
 
@@ -15,11 +11,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="ru">
 			<body>
-				<Header />
-				{children}
-				<Footer />
-				<Analytics />
-				<SpeedInsights />
+				<App>{children}</App>
 			</body>
 		</html>
 	)

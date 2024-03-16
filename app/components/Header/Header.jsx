@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { useState } from "react"
@@ -9,16 +8,14 @@ import AuthForm from "@/app/components/AuthForm/AuthForm"
 import Overlay from "@/app/components/Overlay/Overlay"
 import Popup from "@/app/components/Popup/Popup"
 
-import endpoints from "@/app/api/config"
-import { getMe, getJWT, removeJWT, isResponseOk } from "@/app/api/api-utils"
+import { useStore } from "@/app/store/app-store"
 
 import Styles from "@/app/components/Header/Header.module.css"
 
 export const Header = (props) => {
 	const pathname = usePathname()
-
+	const authContext = useStore()
 	const [popupIsOpened, setPopupIsOpened] = useState(false)
-	const [isAuthorized, setIsAuthorized] = useState(false)
 
 	const openPopup = () => {
 		setPopupIsOpened(true)
@@ -29,24 +26,8 @@ export const Header = (props) => {
 	}
 
 	const handleLogout = () => {
-		removeJWT()
-		setIsAuthorized(false)
+		authContext.logout()
 	}
-
-	useEffect(() => {
-		const jwt = getJWT()
-
-		if (jwt) {
-			getMe(endpoints.me, jwt).then((userData) => {
-				if (isResponseOk(userData)) {
-					setIsAuthorized(true)
-				} else {
-					setIsAuthorized(false)
-					removeJWT()
-				}
-			})
-		}
-	}, [])
 
 	return (
 		<header className={Styles["header"]}>
@@ -143,7 +124,7 @@ export const Header = (props) => {
 					</li>
 				</ul>
 				<div className={Styles["auth"]}>
-					{isAuthorized ? (
+					{authContext.isAuth ? (
 						<button
 							className={Styles["auth__button"]}
 							onClick={handleLogout}
@@ -162,7 +143,7 @@ export const Header = (props) => {
 			</nav>
 			<Overlay isOpened={popupIsOpened} closePopup={closePopup} />
 			<Popup isOpened={popupIsOpened} closePopup={closePopup}>
-				<AuthForm closePopup={closePopup} setAuth={setIsAuthorized} />
+				<AuthForm closePopup={closePopup} />
 			</Popup>
 		</header>
 	)
