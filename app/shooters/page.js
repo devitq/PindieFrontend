@@ -12,7 +12,11 @@ export default function Shooters() {
 	return (
 		<main>
 			{shooterGames ? (
-				<CardsListSection data={shooterGames} id="shooters" title="Шутеры" />
+				<CardsListSection
+					data={shooterGames}
+					id="shooters"
+					title="Шутеры"
+				/>
 			) : (
 				<Preloader />
 			)}

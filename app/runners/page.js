@@ -12,7 +12,11 @@ export default function Runners() {
 	return (
 		<main>
 			{runnerGames ? (
-				<CardsListSection data={runnerGames} id="runners" title="Ранеры" />
+				<CardsListSection
+					data={runnerGames}
+					id="runners"
+					title="Ранеры"
+				/>
 			) : (
 				<Preloader />
 			)}
