@@ -1,6 +1,6 @@
 @font-face {
 	font-family: "Rubic One";
-	src: url(/fonts//rubic-one.woff);
+	src: url(/fonts/rubic-one.woff);
 	font-display: swap;
 }
 
@@ -114,6 +114,10 @@ button {
 
 .main {
 	overflow: hidden;
+}
+
+.main-inner {
+	padding-top: 20px;
 }
 
 @media (width <= 1728px) {

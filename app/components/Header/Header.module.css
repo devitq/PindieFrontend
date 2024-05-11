@@ -133,3 +133,9 @@
 		padding: 18px 20px 10px;
 	}
 }
+
+@media (width <= 650px) {
+	.banner {
+		padding: 80px 14px;
+	}
+}
