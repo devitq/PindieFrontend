@@ -20,7 +20,6 @@ export default function Home() {
 					data={popularGames}
 					id="popular"
 					title="Популярные"
-					type="slider"
 				/>
 			) : (
 				<Preloader />
@@ -30,7 +29,6 @@ export default function Home() {
 					data={newGames}
 					id="new"
 					title="Новинки"
-					type="slider"
 				/>
 			) : (
 				<Preloader />
