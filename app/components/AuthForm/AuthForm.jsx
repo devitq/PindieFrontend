@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect } from "react"
 
 import { isResponseOk, authorize } from "@/app/api/api-utils"
@@ -30,6 +32,7 @@ export const AuthForm = (props) => {
 		let timer
 		if (authContext.user) {
 			timer = setTimeout(() => {
+				setMessage({ status: null, text: null })
 				props.closePopup()
 			}, 1000)
 		}

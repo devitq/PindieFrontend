@@ -13,7 +13,7 @@ export default function Home() {
 	const newGames = useGetDataByCategory(endpoints.games, "new")
 
 	return (
-		<main>
+		<main className="main">
 			<Banner />
 			{popularGames ? (
 				<CardsListSection

@@ -10,7 +10,7 @@ export default function New() {
 	const newGames = useGetDataByCategory(endpoints.games, "new")
 
 	return (
-		<main>
+		<main className="main-inner">
 			{newGames ? (
 				<CardsListSection data={newGames} id="new" title="Новинки" />
 			) : (

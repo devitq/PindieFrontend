@@ -10,7 +10,7 @@ export default function Popular() {
 	const popularGames = useGetDataByCategory(endpoints.games, "popular")
 
 	return (
-		<main>
+		<main className="main-inner">
 			{popularGames ? (
 				<CardsListSection
 					data={popularGames}

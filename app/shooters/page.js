@@ -10,7 +10,7 @@ export default function Shooters() {
 	const shooterGames = useGetDataByCategory(endpoints.games, "shooter")
 
 	return (
-		<main>
+		<main className="main-inner">
 			{shooterGames ? (
 				<CardsListSection
 					data={shooterGames}

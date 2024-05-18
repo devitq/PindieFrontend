@@ -10,7 +10,7 @@ export default function TDS() {
 	const tdsGames = useGetDataByCategory(endpoints.games, "TDS")
 
 	return (
-		<main>
+		<main className="main-inner">
 			{tdsGames ? (
 				<CardsListSection data={tdsGames} id="TDS" title="TDS" />
 			) : (

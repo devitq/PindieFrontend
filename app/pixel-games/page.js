@@ -10,7 +10,7 @@ export default function PixelGames() {
 	const pixelGames = useGetDataByCategory(endpoints.games, "pixel")
 
 	return (
-		<main>
+		<main className="main-inner">
 			{pixelGames ? (
 				<CardsListSection
 					data={pixelGames}

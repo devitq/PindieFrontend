@@ -10,7 +10,7 @@ export default function Runners() {
 	const runnerGames = useGetDataByCategory(endpoints.games, "runner")
 
 	return (
-		<main>
+		<main className="main-inner">
 			{runnerGames ? (
 				<CardsListSection
 					data={runnerGames}

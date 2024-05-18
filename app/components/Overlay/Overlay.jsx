@@ -1,3 +1,5 @@
+"use client"
+
 import Styles from "@/app/components/Overlay/Overlay.module.css"
 
 export const Overlay = (props) => {
