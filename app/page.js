@@ -25,11 +25,7 @@ export default function Home() {
 				<Preloader />
 			)}
 			{newGames ? (
-				<CardsListSection
-					data={newGames}
-					id="new"
-					title="Новинки"
-				/>
+				<CardsListSection data={newGames} id="new" title="Новинки" />
 			) : (
 				<Preloader />
 			)}
