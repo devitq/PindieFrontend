@@ -1,13 +1,15 @@
-"use client"
+// app/signup/page.jsx
 
-import SignupForm from "../components/SignupForm/SignupForm"
+"use client";
 
-import Styles from "./signup.module.css"
+import SignupForm from "../components/SignupForm/SignupForm";
+
+import Styles from "./signup.module.css";
 
 export default function LoginPage() {
-	return (
-		<main className={Styles["main"]}>
-			<SignupForm />
-		</main>
-	)
+  return (
+    <main className={Styles["main"]}>
+      <SignupForm />
+    </main>
+  );
 }
