@@ -3,16 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "cross-env pm2 start ecosystem.config.js",
+    "stop": "cross-env pm2 stop ecosystem.config.js",
     "dev": "next dev",
     "build": "prettier --check . && next build",
     "build:local": "prettier --write . && next build",
-    "start": "next start",
     "lint": "next lint",
     "format": "prettier --write ."
   },
   "dependencies": {
     "@vercel/analytics": "^1.1.2",
     "@vercel/speed-insights": "^1.0.9",
+    "cross-env": "^7.0.3",
     "next": "^14.1.1",
     "pm2": "^5.3.1",
     "react": "^18.2.0",
