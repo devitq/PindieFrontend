@@ -55,7 +55,7 @@ export const AuthForm = (props) => {
             name="email"
             type="email"
             required={true}
-            placeholder="hello@world.com"
+            placeholder="you@example.com"
           />
         </label>
         <label className={Styles["form__field"]}>

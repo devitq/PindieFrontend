@@ -64,7 +64,7 @@ export const SignupForm = (props) => {
             className={Styles["form__field-input"]}
             onInput={handleInput}
             name="username"
-            placeholder="example"
+            placeholder="a-z, A-Z, 0-9, 4-32 символа"
             required={true}
           />
         </label>
@@ -75,7 +75,7 @@ export const SignupForm = (props) => {
             onInput={handleInput}
             name="email"
             type="email"
-            placeholder="hello@world.com"
+            placeholder="you@example.com"
             required={true}
           />
         </label>
