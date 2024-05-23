@@ -64,7 +64,7 @@ export const SignupForm = (props) => {
             className={Styles["form__field-input"]}
             onInput={handleInput}
             name="username"
-            placeholder="a-z, A-Z, 0-9, 4-32 символа"
+            placeholder="a-z, A-Z, 0-9, 3-32 символа"
             required={true}
           />
         </label>

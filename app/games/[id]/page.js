@@ -98,6 +98,14 @@ export default function GamePage(props) {
                   </span>
                 </p>
               </div>
+              <div className={Styles["about__author"]}>
+                <p>
+                  Теги:{" "}
+                  <span className={Styles["about__accent"]}>
+                    {game.categories.map((category) => category.name).join(", ")} 
+                  </span>
+                </p>
+              </div>
             </div>
             <div className={Styles["about__vote"]}>
               <p className={Styles["about__vote-amount"]}>
