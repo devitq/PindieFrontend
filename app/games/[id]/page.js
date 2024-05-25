@@ -116,7 +116,11 @@ export default function GamePage(props) {
                 className={`button ${Styles["about__vote-button"]}`}
                 onClick={isVoted ? handleUnvote : handleVote}
               >
-                {proccessingVote ?  "Обработка..." : isVoted ? "Отменить" : "Голосовать"}
+                {proccessingVote
+                  ? "Обработка..."
+                  : isVoted
+                    ? "Отменить"
+                    : "Голосовать"}
               </button>
             </div>
           </section>
