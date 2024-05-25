@@ -23,8 +23,10 @@ export default function GamePage(props) {
   const [preloaderVisible, setPreloaderVisible] = useState(true);
   const [game, setGame] = useState(null);
   const [isVoted, setIsVoted] = useState(false);
+  const [proccessingVote, setProcessingVote] = useState(false);
 
   const handleVote = async () => {
+    setProcessingVote(true);
     const jwt = authContext.token;
     const response = await vote(`${endpoints.games}/${game.id}/vote`, jwt);
 
@@ -37,10 +39,12 @@ export default function GamePage(props) {
       });
 
       setIsVoted(true);
+      setProcessingVote(false);
     }
   };
 
   const handleUnvote = async () => {
+    setProcessingVote(true);
     const jwt = authContext.token;
     const response = await vote(`${endpoints.games}/${game.id}/unvote`, jwt);
 
@@ -55,6 +59,7 @@ export default function GamePage(props) {
       });
 
       setIsVoted(false);
+      setProcessingVote(false);
     }
   };
 
@@ -107,11 +112,11 @@ export default function GamePage(props) {
                 </span>
               </p>
               <button
-                disabled={!authContext.isAuth}
+                disabled={!authContext.isAuth || proccessingVote}
                 className={`button ${Styles["about__vote-button"]}`}
                 onClick={isVoted ? handleUnvote : handleVote}
               >
-                {isVoted ? "Отменить" : "Голосовать"}
+                {proccessingVote ?  "Обработка..." : isVoted ? "Отменить" : "Голосовать"}
               </button>
             </div>
           </section>
