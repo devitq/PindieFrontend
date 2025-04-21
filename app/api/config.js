@@ -1,6 +1,6 @@
 // app/api/config.js
 
-export const BASE_URL = "https://pindie.itqdev.ru/api";
+export const BASE_URL = "https://pindie.itqdev.xyz/api";
 
 export const endpoints = {
   games: `${BASE_URL}/games`,
